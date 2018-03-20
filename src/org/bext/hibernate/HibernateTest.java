@@ -12,6 +12,8 @@ public class HibernateTest {
 		UserDetails userDetails2 = new UserDetails();
 		userDetails.setUserId(1);
 		userDetails.setUserName("Primer Usuario");
+		userDetails.setAddress("address Primer Usuario");
+		userDetails.setDescription("Primer Usuario Descripcion");
 		
 		userDetails2.setUserId(2);
 		userDetails2.setUserName("Segundo Usuario");
@@ -22,8 +24,8 @@ public class HibernateTest {
 		session.save(userDetails);
 		session.save(userDetails2);
 		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
+		//session.close();
+		//sessionFactory.close();
 	}
 
 }
