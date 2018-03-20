@@ -1,10 +1,13 @@
 package org.bext.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -19,29 +22,21 @@ import javax.persistence.TemporalType;
 @Entity
 @Table (name="USER_DETAILS")
 public class UserDetails {
-	@EmbeddedId
-	private LoginName loginName;
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private int userId;
 	private String userName;
 	@Temporal (TemporalType.DATE)
 	private Date joinedDate;
-	@Embedded
-	private Address homeAddress;
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(name="street",column=@Column(name="OFFICE_STREET_NAME")),
-		@AttributeOverride(name="city",column=@Column(name="OFFICE_CITY_NAME")),
-		@AttributeOverride(name="state",column=@Column(name="OFFICE_STATE_NAME")),
-		@AttributeOverride(name="pinCode",column=@Column(name="OFFICE_PIN_CODEE"))
-	})
-	private Address officeAddress;
+	@ElementCollection
+	private Set<Address> listOfAddresses = new HashSet();
 	@Lob
 	private String description;
-
-	public LoginName getLoginName() {
-		return loginName;
+	
+	public int getUserId() {
+		return userId;
 	}
-	public void setLoginName(LoginName loginName) {
-		this.loginName = loginName;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getUserName() {
 		return userName;
@@ -55,18 +50,12 @@ public class UserDetails {
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
 	}
-	
-	public Address getHomeAddress() {
-		return homeAddress;
+    	
+	public Set<Address> getListOfAddresses() {
+		return listOfAddresses;
 	}
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-	public Address getOfficeAddress() {
-		return officeAddress;
-	}
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
+	public void setListOfAddresses(Set<Address> listOfAddresses) {
+		this.listOfAddresses = listOfAddresses;
 	}
 	public String getDescription() {
 		return description;
