@@ -3,6 +3,7 @@ package org.bext.hibernate;
 import java.util.Date;
 
 import org.bext.dto.Address;
+import org.bext.dto.LoginName;
 import org.bext.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,13 +32,17 @@ public class HibernateTest {
 				
 		UserDetails userDetails = new UserDetails();
 		UserDetails userDetails2 = new UserDetails();
+		LoginName loginName1 = new LoginName(1L,"unoLogin");
+		LoginName loginName2 = new LoginName(2L,"dosLogin");
 		
+		userDetails.setLoginName(loginName1);
 		userDetails.setUserName("Primer Usuario");
 		userDetails.setJoinedDate(new Date());
 		userDetails.setDescription("Primer Usuario Descripcion");
 		userDetails.setHomeAddress(addr1);
 		userDetails.setOfficeAddress(officeAddr);
-		
+
+		userDetails2.setLoginName(loginName2);
 		userDetails2.setUserName("Segundo Usuario");
 		userDetails2.setHomeAddress(addr2);
 		userDetails2.setOfficeAddress(officeAddr);

@@ -6,6 +6,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table (name="USER_DETAILS")
 public class UserDetails {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private int userId;
+	@EmbeddedId
+	private LoginName loginName;
 	private String userName;
 	@Temporal (TemporalType.DATE)
 	private Date joinedDate;
@@ -36,13 +37,12 @@ public class UserDetails {
 	@Lob
 	private String description;
 
-	public int getUserId() {
-		return userId;
+	public LoginName getLoginName() {
+		return loginName;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setLoginName(LoginName loginName) {
+		this.loginName = loginName;
 	}
-
 	public String getUserName() {
 		return userName;
 	}
