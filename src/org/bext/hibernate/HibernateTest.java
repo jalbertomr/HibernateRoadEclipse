@@ -22,6 +22,12 @@ public class HibernateTest {
 		addr2.setCity("San Miguel de Allende");
 		addr2.setState("Guanajuato");
 		addr2.setPinCode("00011");
+		
+		Address officeAddr = new Address();
+		officeAddr.setStreet("Paseo de la Reforma");
+		officeAddr.setCity("Mexico");
+		officeAddr.setState("D.F");
+		officeAddr.setPinCode("01223");
 				
 		UserDetails userDetails = new UserDetails();
 		UserDetails userDetails2 = new UserDetails();
@@ -29,10 +35,12 @@ public class HibernateTest {
 		userDetails.setUserName("Primer Usuario");
 		userDetails.setJoinedDate(new Date());
 		userDetails.setDescription("Primer Usuario Descripcion");
-		userDetails.setAddress(addr1);
+		userDetails.setHomeAddress(addr1);
+		userDetails.setOfficeAddress(officeAddr);
 		
 		userDetails2.setUserName("Segundo Usuario");
-		userDetails2.setAddress(addr2);
+		userDetails2.setHomeAddress(addr2);
+		userDetails2.setOfficeAddress(officeAddr);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
