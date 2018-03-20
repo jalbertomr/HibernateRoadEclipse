@@ -2,6 +2,9 @@ package org.bext.dto;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +24,15 @@ public class UserDetails {
 	@Temporal (TemporalType.DATE)
 	private Date joinedDate;
 	@Embedded
-	private Address address;
+	private Address homeaddress;
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride (name="street", column=@Column(name="OFF_STREET_NAME")),
+		@AttributeOverride (name="city", column=@Column(name="OFF_CITY_NAME")),
+		@AttributeOverride (name="state", column=@Column(name="OFF_STATE_NAME")),
+		@AttributeOverride (name="pinCode", column=@Column(name="OFF_PIN_CODE"))
+	})
+	private Address officeaddress;
 	@Lob
 	private String description;
 
@@ -44,11 +55,18 @@ public class UserDetails {
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
 	}
-	public Address getAddress() {
-		return address;
+	
+	public Address getHomeaddress() {
+		return homeaddress;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setHomeaddress(Address homeaddress) {
+		this.homeaddress = homeaddress;
+	}
+	public Address getOfficeaddress() {
+		return officeaddress;
+	}
+	public void setOfficeaddress(Address officeaddress) {
+		this.officeaddress = officeaddress;
 	}
 	public String getDescription() {
 		return description;

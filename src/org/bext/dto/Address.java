@@ -1,13 +1,19 @@
 package org.bext.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+	@Column (name="STREET_NAME")
 	private String street;
+	@Column (name="CITY_NAME")
 	private String city;
+	@Column (name="STATE_NAME")
 	private String state;
+	@Column (name="PIN_CODE")
 	private String pinCode;
+	
 	public String getStreet() {
 		return street;
 	}
