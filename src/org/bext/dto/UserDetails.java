@@ -2,6 +2,7 @@ package org.bext.dto;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,8 @@ public class UserDetails {
 	private String userName;
 	@Temporal (TemporalType.DATE)
 	private Date joinedDate;
-	private String address;
+	@Embedded
+	private Address address;
 	@Lob
 	private String description;
 
@@ -42,10 +44,10 @@ public class UserDetails {
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 	public String getDescription() {
