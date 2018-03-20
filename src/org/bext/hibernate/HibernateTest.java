@@ -1,5 +1,7 @@
 package org.bext.hibernate;
 
+import java.util.Date;
+
 import org.bext.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +14,7 @@ public class HibernateTest {
 		UserDetails userDetails2 = new UserDetails();
 		userDetails.setUserId(1);
 		userDetails.setUserName("Primer Usuario");
+		userDetails.setJoinedDate(new Date());
 		userDetails.setAddress("address Primer Usuario");
 		userDetails.setDescription("Primer Usuario Descripcion");
 		
