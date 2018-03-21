@@ -37,7 +37,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="org.bext.dto.UserDetails"/>
-
+		<mapping class="org.bext.dto.Vehicle"/>
     </session-factory>
 
 </hibernate-configuration>

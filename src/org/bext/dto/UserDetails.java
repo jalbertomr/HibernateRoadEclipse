@@ -1,39 +1,29 @@
 package org.bext.dto;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.persistence.Table;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.JoinColumn;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 @Table (name="USER_DETAILS")
 public class UserDetails {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(generator="vehicle-gen",strategy=GenerationType.AUTO)
+	@GenericGenerator(name="vehicle-gen",strategy="sequence",
+						parameters={@Parameter(name="sequence_name",value="seq_vehicle")}
+					)
 	private int userId;
 	private String userName;
-	@ElementCollection(fetch=FetchType.EAGER)
-	@JoinTable(name="USER_ADDRESS",
-	joinColumns=@JoinColumn(name="USER_ID"))
-	@GenericGenerator(name="addressGenerator",strategy="sequence", 
-    					parameters = { 
-    							@Parameter(name="sequence_name", value="seq_address") } 
-    				)
-	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "addressGenerator", type = @Type(type="long"))
-	private Collection<Address> listOfAddresses = new ArrayList<Address>();
+	@OneToOne
+	@JoinColumn(name="VEHICLE_ID")
+	private Vehicle vehicle;
 	
 	public int getUserId() {
 		return userId;
@@ -47,12 +37,11 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-		
-	public Collection<Address> getListOfAddresses() {
-		return listOfAddresses;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
-	public void setListOfAddresses(Collection<Address> listOfAddresses) {
-		this.listOfAddresses = listOfAddresses;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	
 }
