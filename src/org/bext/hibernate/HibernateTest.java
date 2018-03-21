@@ -1,9 +1,6 @@
 package org.bext.hibernate;
 
-import java.util.Date;
-
 import org.bext.dto.Address;
-import org.bext.dto.LoginName;
 import org.bext.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,8 +31,6 @@ public class HibernateTest {
 		UserDetails userDetails2 = new UserDetails();
 		
 		userDetails.setUserName("Primer Usuario");
-		userDetails.setJoinedDate(new Date());
-		userDetails.setDescription("Primer Usuario Descripcion");
 		userDetails.getListOfAddresses().add(addr1);
 		userDetails.getListOfAddresses().add(officeAddr);
 		
@@ -49,6 +44,14 @@ public class HibernateTest {
 		session.save(userDetails2);
 		session.getTransaction().commit();
 		session.close();
+		
+		userDetails = null;
+		
+		session = sessionFactory.openSession();
+		userDetails = (UserDetails) session.get(UserDetails.class, 1);
+		session.close();
+		System.out.println(userDetails.getListOfAddresses().size());
+		
 		//sessionFactory.close();
 	}
 
