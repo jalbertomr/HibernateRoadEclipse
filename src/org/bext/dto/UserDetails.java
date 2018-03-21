@@ -39,11 +39,11 @@ public class UserDetails {
 	@ElementCollection
 	@JoinTable(name="USER_ADDRESS",
 	joinColumns=@JoinColumn(name="USER_ID"))
-    @GenericGenerator(name="seq-gen",strategy="sequence", 
+	@GenericGenerator(name="addressGenerator",strategy="sequence", 
     					parameters = { 
-    							@Parameter(name="sequence", value="HONEY_SEQ") } 
+    							@Parameter(name="sequence_name", value="seq_address") } 
     				)
-	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "seq-gen", type = @Type(type="long"))
+	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "addressGenerator", type = @Type(type="long"))
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 	@Lob
 	private String description;
