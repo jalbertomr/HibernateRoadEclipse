@@ -15,9 +15,12 @@ public class HibernateTest {
 		
 		Vehicle vehicle1 = new Vehicle();
 		vehicle1.setVehicleName("carrito");
+		Vehicle vehicle2 = new Vehicle();
+		vehicle2.setVehicleName("Audi");
 				
 		userDetails.setUserName("Primer Usuario");
-		userDetails.setVehicle(vehicle1);
+		userDetails.getVehicle().add(vehicle1);
+		userDetails.getVehicle().add(vehicle2);
 		userDetails2.setUserName("Segundo Usuario");
 		
 		
@@ -27,6 +30,7 @@ public class HibernateTest {
 		session.save(userDetails);
 		session.save(userDetails2);
 		session.save(vehicle1);
+		session.save(vehicle2);
 		session.getTransaction().commit();
 		session.close();
 		

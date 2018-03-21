@@ -5,11 +5,15 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,9 +25,9 @@ public class UserDetails {
 					)
 	private int userId;
 	private String userName;
-	@OneToOne
+	@OneToMany
 	@JoinColumn(name="VEHICLE_ID")
-	private Vehicle vehicle;
+	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 	
 	public int getUserId() {
 		return userId;
@@ -37,10 +41,10 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Vehicle getVehicle() {
+	public Collection<Vehicle> getVehicle() {
 		return vehicle;
 	}
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(Collection<Vehicle> vehicle) {
 		this.vehicle = vehicle;
 	}
 	
