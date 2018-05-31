@@ -10,6 +10,7 @@ public class Vehicle {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int vehicleId;
 	private String vehicleName;
+	
 	public int getVehicleId() {
 		return vehicleId;
 	}

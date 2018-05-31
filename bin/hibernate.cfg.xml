@@ -38,6 +38,8 @@
         <!-- Names the annotated entity class -->
         <mapping class="org.bext.dto.UserDetails"/>
 		<mapping class="org.bext.dto.Vehicle"/>
+		<mapping class="org.bext.dto.DosRuedas"/>
+		<mapping class="org.bext.dto.CuatroRuedas"/>
     </session-factory>
 
 </hibernate-configuration>
