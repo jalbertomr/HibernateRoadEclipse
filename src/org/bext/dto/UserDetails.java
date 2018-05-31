@@ -8,6 +8,7 @@ import org.hibernate.annotations.Parameter;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class UserDetails {
 					)
 	private int userId;
 	private String userName;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="USER_VEHICLE",joinColumns=@JoinColumn(name="USER_ID"),
 			inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
 	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
